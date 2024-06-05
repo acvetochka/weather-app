@@ -7,13 +7,21 @@
             <a :href="contact.src" target="_blank" rel="noopener noreferrer nofollow">{{contact.name }}</a>
         </li>
     </ul>
+    <div>
+      <p>Original Price: {{ originalPrice }}</p>
+      <input type="number" v-model="discount">
+      <p>Discount: {{ discount}}</p>
+      <p>Final Price: {{ finalPrice }}</p>
+    </div>
 
 </div>
 </template>
 
 <script>
 import {
-    defineComponent
+    defineComponent,
+    ref,
+    computed
 } from "vue";
 
 export default defineComponent({
@@ -45,9 +53,17 @@ export default defineComponent({
             }
         ]
         const name = "Alona"
+        const originalPrice = ref(100)
+        const discount = ref(null)
+
+        const finalPrice = computed(()=> {
+          return originalPrice.value - discount.value
+        })
         return {
             contacts,
-            name
+            name,
+            originalPrice,
+            discount,finalPrice
         }
     }
 })
