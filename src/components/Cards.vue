@@ -13,8 +13,11 @@
       <p>Discount: {{ discount}}</p>
       <p>Final Price: {{ finalPrice }}</p>
     </div>
+    <input type="number" v-model="counter">
+   
 
 </div>
+<Counter :counter="counter"/>
 </template>
 
 <script>
@@ -23,12 +26,14 @@ import {
     ref,
     computed
 } from "vue";
+import Counter from "./Card";
 
 export default defineComponent({
     name: 'Cards',
     props: {
         msg: String
     },
+    components: {Counter},
     setup() {
 
         const contacts = [{
@@ -55,6 +60,7 @@ export default defineComponent({
         const name = "Alona"
         const originalPrice = ref(100)
         const discount = ref(null)
+        const counter = ref(0)
 
         const finalPrice = computed(()=> {
           return originalPrice.value - discount.value
@@ -63,7 +69,8 @@ export default defineComponent({
             contacts,
             name,
             originalPrice,
-            discount,finalPrice
+            discount,finalPrice,
+            counter
         }
     }
 })
