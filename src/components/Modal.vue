@@ -1,9 +1,12 @@
 <template>
-<div class="modal">
-    <div class="modal-content">
-        <h3>{{ modalTitle }}</h3>
-        <p>{{ modalMessage }}</p>
-        <button @click="closeModal">Close</button>
+<div class="modal-container">
+    <div class="modal-close" @click="closeModal"></div>
+    <div class="modal">
+        <div class="modal-content">
+            <h3>{{ modalTitle }}</h3>
+            <p>{{ modalMessage }}</p>
+            <button @click="closeModal">Close</button>
+        </div>
     </div>
 </div>
 </template>
@@ -20,7 +23,9 @@ export default defineComponent({
         modalMessage: String
     },
     emits: ["close"],
-    setup(props, {emit}) {
+    setup(props, {
+        emit
+    }) {
 
         function closeModal() {
             emit('close')
@@ -35,16 +40,20 @@ export default defineComponent({
 </script>
 
 <style>
-.modal {
-    position: fixed;
+.modal-close {
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
 }
 
 .modal-content {

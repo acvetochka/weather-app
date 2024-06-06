@@ -2,6 +2,13 @@
     
 <div class="main-block">
     <button @click="showModal">Show Modal Window</button>
+    <br/>
+    <label for="modalTitle">Title</label>
+    <input type="text" id="modalTitle" v-model="modalTitle">
+    <br/>
+    <label for="modalMessage">Message</label>
+    <input type="text" id="modalMessage" v-model="modalMessage">
+    <br/>
     <Modal v-if="isModalOpen" :modal-title="modalTitle" :modal-message="modalMessage" @close="closeModal"/>
 </div>
 
@@ -25,8 +32,15 @@ export default defineComponent({
 
         function showModal() {
             isModalOpen.value = true;
-            modalTitle.value = "Defaulrt Title";
-            modalMessage.value = "Default Message"
+            if(!modalTitle.value) {
+                modalTitle.value = "Default Title";
+            }
+
+            if(!modalMessage.value) {
+                modalMessage.value = "Default Message"
+            }
+            
+            
         }
 
         
