@@ -2,18 +2,21 @@
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <Cards msg="Welcome to Your Vue.js App" name=""/>
   <Counter/>
+  <ParentComponent/>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
-import Cards from "./components/Cards.vue"
-import Counter from "./components/Counter.vue"
+import Cards from "@/components/Cards.vue"
+import Counter from "@/components/Counter.vue"
+import ParentComponent from "@/components/ParentComponent.vue"
 
 export default {
   name: 'App',
   components: {
     Cards,
-    Counter
+    Counter,
+    ParentComponent
   }
 }
 </script>
