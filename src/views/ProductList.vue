@@ -8,11 +8,11 @@
     <div v-else>
         <ul class="products-list">
             <template v-for="product in products" :key="product.id">
+                <li>
                 <router-link :to="`/products/${product.id}`">
-                    <li>
                         {{ product.title }}
-                    </li>
-                </router-link>
+                    </router-link>
+                </li>
 
             </template>
         </ul>
