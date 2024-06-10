@@ -1,5 +1,7 @@
 # weather-app
 
+[Link](https://glob-weather-app.netlify.app/)
+
 ## Project setup
 ```
 npm install
