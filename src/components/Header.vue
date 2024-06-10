@@ -35,8 +35,16 @@ export default defineComponent({
                 path: "/products"
             },
             {
+                title: "New Products",
+                path: "/newProducts"
+            },
+            {
                 title: "Contacts",
                 path: "/contacts"
+            },
+            {
+                title: "Photos",
+                path: "/photos"
             }
         ]
 
@@ -58,7 +66,7 @@ export default defineComponent({
 
 .nav-header ul {
     display: grid;
-    grid-template-columns: repeat(3,auto);
+    grid-template-columns: repeat(5,auto);
     gap: 20px;
     justify-content: start;
     justify-items: center;

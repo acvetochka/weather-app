@@ -1,7 +1,7 @@
 <template>
 <div>
     <div v-if="loading">
-        <p>Loading product...</p>
+        <p><Loader/></p>
     </div>
     <div v-else>
         <h1>{{ product?.title }}</h1>
@@ -18,6 +18,7 @@ import {
     onMounted
 } from "vue"
 import axios from "axios"
+import Loader from "@/components/Loader.vue"
 
 export default defineComponent({
     name: "Product",
@@ -28,6 +29,7 @@ export default defineComponent({
 
         }
     },
+    components: {Loader},
     setup(props) {
 
         const product = ref(null)

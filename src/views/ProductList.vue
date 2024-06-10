@@ -3,7 +3,7 @@
     <h1>Products</h1>
 
     <div v-if="loading">
-        <p>Loading products...</p>
+        <div class="loader"><Loader/></div>
     </div>
     <div v-else>
         <ul class="products-list">
@@ -28,9 +28,11 @@ import {
     onMounted
 } from "vue";
 import axios from "axios";
+import Loader from "@/components/Loader.vue"
 
 export default defineComponent({
     name: "ProductList",
+    components: {Loader},
     setup() {
 
         const products = ref({})
@@ -80,5 +82,9 @@ export default defineComponent({
 
 a:hover {
     text-decoration: none;
+}
+
+.loader {
+    margin: 0 auto;
 }
 </style>
