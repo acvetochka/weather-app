@@ -1,27 +1,18 @@
 import {defineStore} from "pinia";
-import axios from "axios";
+import {getWeatherData} from "@/api";
 
-export const useProductStore = defineStore({
-    id: 'product',
-    state: () => ({
-        products: [],
-        loading: true,
+export const useWeatherStore = defineStore({
+    id: "weather",
+    state: ()=> ({
+        city: "",
+        weatherData: null
     }),
     actions: {
-        async fetchProducts(){
-            const limit = 10;
-            const response = await axios.get(`https://dummyjson.com/products?limit=${limit}`);
-            this.products = response.data.products;
-            this.loading = false;
-        },
-        addProduct(product) {
-            this.products.push(product);
-        },
-        removeProduct(productId) {
-            this.products = this.products.filter((product) => product.id !== productId)
-        },
-        sortProducts() {
-            this.products = this.products.sort((a,b)=> a.price - b.price)
+        async getWeatherData(city) {
+            const response = await getWeatherData(city);
+            this.weatherData = response.data;
+            console.log("weatherData: ", this.weatherData);
+            this.city = city;
         }
     }
 })

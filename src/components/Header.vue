@@ -1,75 +1,75 @@
 <template>
-<header>
-    <nav class="nav-header">
-        <ul>
-            <li v-for="page in pages" :key="page.path">
-                <router-link :to="page.path">{{ page.title }}</router-link>
-            </li>
-        </ul>
-        <!-- <ul>
-                <li>
-                    <router-link to="/">Home</router-link>
-                    <router-link to="/products">Products</router-link>
-                    <router-link to="/contacts">Contacts</router-link>
-                </li>
-            </ul> -->
-    </nav>
-</header>
-</template>
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <a @click="goToMain" href="#">Mini weather App</a>
+            </div>
 
-<script>
-import {
-    defineComponent
-} from "vue"
+            <nav>
+                <div class="nav-content">
+                    <a @click="goToMain" href="">Main</a>
+                    <a @click="goToAbout" href="">About</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <CustomLayout>
+        <router-view />
+    </CustomLayout>
+    
+    </template>
+    
+    <script>
+    
+    import {defineComponent} from 'vue';
+    import {useRouter} from "vue-router";
+    
+    
+    export default defineComponent({
+        name: 'Header',
+    
+        setup() {
+            const router = useRouter();
 
-export default defineComponent({
-    name: "Header",
-    setup() {
-
-        const pages = [{
-                title: "Home",
-                path: "/"
-            },
-            {
-                title: "Products",
-                path: "/products"
-            },
-            {
-                title: "New Products",
-                path: "/newProducts"
-            },
-            {
-                title: "Contacts",
-                path: "/contacts"
-            },
-            {
-                title: "Photos",
-                path: "/photos"
+            const goToMain = () => {
+                router.push({name: "Main"})
             }
-        ]
 
-        return {
-            pages
+            const goToAbout = () => {
+                router.push({name: "About"})
+            }
+    
+            return {
+                goToMain,
+                goToAbout    
+            }
         }
+    })
+    </script>
+    
+    <style scoped>
+
+    .logo-container a {
+        font-weight: 600;
     }
-})
-</script>
 
-<style scoped>
+    .header-container {
+        padding: 20px 28px;
+        font-size: 18px;
+        background-color: #b6c4d5;
 
-.nav-header {
-    padding: 20px 20px 0 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    background-color: #fff;
-}
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        align-items: center;
+        justify-content: space-between;
+    }
 
-.nav-header ul {
-    display: grid;
-    grid-template-columns: repeat(5,auto);
-    gap: 20px;
-    justify-content: start;
-    justify-items: center;
-    align-content: center;
-}
-</style>
+    .nav-content {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        align-items: center;
+        gap: 20px;
+    }
+    
+    </style>

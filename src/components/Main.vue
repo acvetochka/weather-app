@@ -1,21 +1,20 @@
 <template>
-
-    <div>
-        <h1>Welcome to our shopping</h1>
-    </div>
-
+    <Weather/>
 
 </template>
 
+    
 <script>
 import {
     defineComponent
-} from "vue"
+} from 'vue';
+import Weather from "@/components/Weather";
 
 export default defineComponent({
-    name: "Main",
-    setup() {
+    name: 'Main',
+    components: {Weather},
 
+    setup() {
 
         return {
 
@@ -24,6 +23,7 @@ export default defineComponent({
 })
 </script>
 
+    
 <style scoped>
 
 </style>
