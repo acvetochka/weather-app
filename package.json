@@ -1,11 +1,16 @@
 {
   "name": "weather-app",
   "version": "0.1.0",
+  "homepage": "https://acvetochka.github.io/weather-app",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acvetochka/weather-app.git"
   },
   "dependencies": {
     "axios": "^1.7.2",
