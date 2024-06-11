@@ -1,0 +1,26 @@
+
+Ця проблема виникає через те, що при деплої на GitHub Pages сервер не знає, як обробляти маршрутизацію Vue, оскільки це односторінковий додаток (SPA). Коли ви переходите на https://acvetochka.github.io/weather-app/about, сервер намагається знайти фізичний файл /about, якого не існує, і тому повертає помилку 404.
+
+Щоб виправити це, потрібно налаштувати 404.html файл так, щоб він перенаправляв всі запити на ваш index.html файл, який потім оброблятиметься маршрутизатором Vue. GitHub Pages підтримує цю техніку.
+
+Крок 1: Додавання 404.html для GitHub Pages
+Створіть файл 404.html у вашій папці збірки (наприклад, dist або інша папка, куди виходить збірка Vue) з таким вмістом:
+
+html
+Копіювати код
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Page Not Found</title>
+    <script type="text/javascript">
+      // Перенаправлення на головну сторінку для обробки маршрутизатором Vue
+      var redirectTo = window.location.pathname;
+      window.location.replace('/weather-app/' + '#' + redirectTo);
+    </script>
+  </head>
+  <body>
+    <h1>404 - Page Not Found</h1>
+    <p>Redirecting...</p>
+  </body>
+</html>
