@@ -3,5 +3,4 @@ module.exports = defineConfig({
   publicPath: '/weather-app/',
   transpileDependencies: true,
   outputDir: 'dist'
-
 })
