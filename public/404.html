@@ -4,9 +4,8 @@
     <meta charset="utf-8">
     <title>Page Not Found</title>
     <script type="text/javascript">
-      // Перенаправлення на головну сторінку для обробки маршрутизатором Vue
-      var redirectTo = window.location.pathname.replace('/weather-app/', '');
-      window.location.replace('/weather-app/#' + redirectTo);
+      var redirectTo = window.location.pathname.replace('/weather-app/', '/weather-app/#/');
+      window.location.replace(redirectTo);
     </script>
   </head>
   <body>
