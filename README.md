@@ -1,6 +1,6 @@
 # weather-app
 
-[Link](https://glob-weather-app.netlify.app/)
+[Link](https://acvetochka.github.io/weather-app/)
 
 ## Project setup
 ```
