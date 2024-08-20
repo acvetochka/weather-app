@@ -1,31 +1,30 @@
 <template>
-<div class="weather" :class="typeof weather?.main !== 'undefined' && (weather?.main.temp -273.15 )> 16 ? 'warm': ''">
-
-    <main>
-        <div class="search-box">
-            <input type="text" id="city" class="search-bar" placeholder="Search..." v-model="city" @keyup.enter="fetchData">
-        </div>
-
-        <div v-if="weather?.main" class="weather-container">
-            <div class="weather-wrap">
-                <div class="location-box">
-                <div class="location">
-                    {{ weather?.name }}, {{ weather.sys.country }}
-                    <div class="date">
-                        {{ dateBuilder() }}
+    <div class="weather" :class="typeof weather?.main !== 'undefined' && (weather?.main.temp -273.15 )> 16 ? 'warm': ''">
+        <main>
+            <div class="search-box">
+                <input type="text" id="city" class="search-bar" placeholder="Search..." v-model="city" @keyup.enter="fetchData">
+            </div>
+    
+            <div v-if="weather?.main" class="weather-container">
+                <div class="weather-wrap">
+                    <div class="location-box">
+                    <div class="location">
+                        {{ weather?.name }}, {{ weather.sys.country }}
+                        <div class="date">
+                            {{ dateBuilder() }}
+                        </div>
+                    </div>
                     </div>
                 </div>
+    
+                <div class="weather-box">
+                    <div class="temp">{{ (weather?.main.temp - 273.15).toFixed(1) }}°C</div>
+                    <div class="weather">{{ weather?.weather[0].main }}</div>
                 </div>
+    
             </div>
-
-            <div class="weather-box">
-                <div class="temp">{{ (weather?.main.temp - 273.15).toFixed(1) }}°C</div>
-                <div class="weather">{{ weather?.weather[0].main }}</div>
-            </div>
-
-        </div>
-    </main>
-</div>
+        </main>
+    </div>
 </template>
 
 <script>
