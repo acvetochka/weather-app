@@ -144,6 +144,12 @@ export default defineComponent({
   box-shadow: 3px 6px rgba(0, 0, 0, 0.25);
 }
 
+@media screen and (max-width: 468px) {
+  .weather-box .temp {
+    font-size: 62px;
+  }
+}
+
 .weather-box .weather {
   background: none;
   color: #FFF;
