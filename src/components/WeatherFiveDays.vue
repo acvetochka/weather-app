@@ -1,5 +1,5 @@
 <template>
-    <!-- <div class="weather" :class="typeof weather?.main !== 'undefined' && (weather?.main.temp -273.15 )> 16 ? 'warm': ''">
+    <div class="weather" :class="typeof weather?.main !== 'undefined' && (weather?.main.temp -273.15 )> 16 ? 'warm': ''">
         <main>
             <div class="search-box">
                 <input type="text" id="city" class="search-bar" placeholder="Search..." v-model="city" @keyup.enter="fetchData">
@@ -22,38 +22,6 @@
                     <div class="weather">{{ weather?.weather[0].main }}</div>
                 </div>
     
-                <div>
-                  <WeatherFiveDays/>
-                </div>
-            </div>
-        </main>
-    </div> -->
-    <div class="weather" :class="typeof weather?.main !== 'undefined' && weather?.current.temp_c > 16 ? 'warm': ''">
-        <main>
-            <div class="search-box">
-                <input type="text" id="city" class="search-bar" placeholder="Search..." v-model="city" @keyup.enter="fetchData">
-            </div>
-    
-            <div v-if="weather?.main" class="weather-container">
-                <div class="weather-wrap">
-                    <div class="location-box">
-                    <div class="location">
-                        {{ weather?.location.name }}, {{ weather.location.country }}
-                        <div class="date">
-                            {{ dateBuilder() }}
-                        </div>
-                    </div>
-                    </div>
-                </div>
-    
-                <div class="weather-box">
-                    <div class="temp">{{ (weather?.current.temp_c).toFixed(1) }}°C</div>
-                    <div class="weather">{{ weather?.current.condition.text }}</div>
-                </div>
-    
-                <div>
-                  <!-- <WeatherFiveDays/> -->
-                </div>
             </div>
         </main>
     </div>
@@ -66,23 +34,21 @@ import {
     computed
 } from "vue";
 import {useWeatherStore} from "@/store";
-// import WeatherFiveDays from "./WeatherFiveDays.vue";
-// import WeatherFiveDays from "./WeatherFiveDays.vue";
 
 export default defineComponent({
     props: {
         counter: Number
     },
-    // components: {WeatherFiveDays},
     setup() {
 
         const city = ref('');
         const store = useWeatherStore()
 
-        const weather = computed(() => store.weatherData)
+        const weather = computed(() => store.weatherDataFiveDays)
 
         function fetchData() {
-            store.getWeatherData(city.value)
+            // store.getWeatherData(city.value)
+            store.getDataFiveDays(city.value)
             // store.getDate(city.value)
         }
 

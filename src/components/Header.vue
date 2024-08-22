@@ -4,13 +4,13 @@
             <div class="logo-container">
                 <a @click="goToMain" href="#">Mini weather App</a>
             </div>
-
+<!-- 
             <nav>
                 <div class="nav-content">
                     <a @click="goToMain" href="">Main</a>
                     <a @click="goToAbout" href="">About</a>
                 </div>
-            </nav>
+            </nav> -->
         </div>
     </header>
     
