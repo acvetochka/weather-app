@@ -13,6 +13,8 @@
     "url": "git+https://github.com/acvetochka/weather-app.git"
   },
   "dependencies": {
+    "@jamescoyle/vue-icon": "^0.1.2",
+    "@mdi/js": "^7.4.47",
     "axios": "^1.7.2",
     "core-js": "^3.8.3",
     "pinia": "^2.1.7",
