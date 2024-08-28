@@ -14,8 +14,9 @@ export const useWeatherStore = defineStore({
     actions: {
         async getWeatherData(locationData) {
             // const response = await getWeatherData(city);
+            // const {lat, lon} = locationData;
 
-            const response = await getWeatherData(locationData.cityCoor);
+            const response = await getWeatherData(locationData.lat,locationData.lon);
             console.log(response);
             this.locationData = locationData;
             // const response = await getData(city);

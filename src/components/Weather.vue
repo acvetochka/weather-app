@@ -46,7 +46,7 @@
         </ul>
       </div>
 
-      <!-- <div v-if="weather?.main" class="weather-container">
+      <div v-if="weather?.main" class="weather-container">
                 <div class="weather-wrap">
                     <div class="location-box">
                     <div class="location">
@@ -63,7 +63,7 @@
                     <div class="weather">{{ weather?.weather[0].main }}</div>
                 </div>
     
-            </div> -->
+            </div>
 
       <div v-if="weather?.current" class="weather-container">
         <div class="weather-wrap">
