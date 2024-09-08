@@ -49,6 +49,9 @@ export const useWeatherStore = defineStore({
             this.locations = response.data.features;
             console.log("locations: ", this.locations);
             // this.locations = city;         
+        },
+        async removeLocations() {
+            this.locations = null
         }
     }
 })

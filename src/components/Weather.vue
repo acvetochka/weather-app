@@ -1,19 +1,20 @@
 <template>
   <div
     class="weather"
-    :class="
+    :class="[
       typeof weather?.main !== 'undefined' && weather?.main.temp - 273.15 > 16
         ? 'warm'
-        : ''
+        : '',
+        ]
     "
   >
-    <main>
+    <main :class="weather?.weather[0].main === 'Rain' ? 'rain' : ''">
       <div class="search-box">
         <input
           type="text"
           id="city"
           list="cityname"
-          class="search-bar"
+          :class="['search-bar', { 'search-active': locations !== null }]"
           placeholder="Search..."
           v-model="city"
           @keyup.enter="fetchLocation"
@@ -33,12 +34,8 @@
             :key="index"
             @click="selectLocation(item.properties)"
           >
-            <!-- {{ item.properties.formatted }} -->
             {{ item.properties.city }}, {{ item.properties.country }},
             {{ item.properties.postcode }}
-            <!-- <div v-if="item.properties.district">
-                ({{ item.properties.district }})
-              </div> -->
             <div v-if="item.properties.state">
               ({{ item.properties.state }})
             </div>
@@ -50,7 +47,8 @@
         <div class="weather-wrap">
           <div class="location-box">
             <div class="location">
-              {{ weather?.name }}, {{ weather.sys.country }}
+              {{ locationData?.name }}, {{ locationData?.country }}
+              <div v-if="locationData?.state">({{ locationData.state }})</div>
               <div class="date">
                 {{ dateBuilder() }}
               </div>
@@ -88,7 +86,7 @@
         </div>
       </div>
 
-      <div v-if="weather?.current" class="weather-container">
+      <!-- <div v-if="weather?.current" class="weather-container">
         <div class="weather-wrap">
           <div class="location-box">
             <div class="location">
@@ -110,7 +108,6 @@
             </div>
           </div>
           <div class="weather">
-            <!-- <img src={{ weather?.current.condition.icon }}/> -->
             {{ weather?.current.condition.text }}
             <div class="wind-container">
               <svg-icon type="mdi" :path="windy"></svg-icon>
@@ -132,7 +129,7 @@
             <div>{{ weather?.current.pressure_mb }} Pa</div>
           </div>
         </div>
-      </div>
+      </div> -->
     </main>
   </div>
 </template>
@@ -197,6 +194,9 @@ export default defineComponent({
         await store.getLocations(city.value);
         console.log(store.locations);
       }
+      else {
+        await store.removeLocations();
+      }
     }
 
     return {
@@ -229,6 +229,21 @@ export default defineComponent({
   background-image: url("../../assets/warm-bg.jpg");
 }
 
+.weather .rain {
+  background-image: url("../../assets/rain.png");
+  animation: rain 0.3s linear infinite;
+}
+
+@keyframes rain {
+  0%{
+    background-position: 20% -10%;
+  }
+  100%{
+    background-position: -10% 100%;
+  }
+  
+}
+
 .search-box {
   width: 100%;
   /* margin-bottom: 30px; */
@@ -252,6 +267,10 @@ export default defineComponent({
 .search-box .search-bar:focus {
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.25);
   background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 16px 16px 0 0;
+}
+
+.search-box .search-bar.search-active {
   border-radius: 16px 16px 0 0;
 }
 
@@ -312,12 +331,18 @@ export default defineComponent({
 
 .location-container {
   position: relative;
+  z-index: 100;
+  
 }
 
 .location-list {
   position: absolute;
   top: 0;
   width: 100%;
+  overflow-y: auto;
+  box-shadow: 0px 100px 100px #361635;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
 }
 .location-item {
   display: flex;
@@ -325,7 +350,13 @@ export default defineComponent({
   background-color: rgb(180 147 174);
   padding: 15px;
   border: 1px rgba(0, 0, 0, 1);
+  border-bottom: 1px solid #a2526a;
+  cursor: pointer;
   /* border-radius: 10px; */
+}
+
+.location-item:last-child{
+  border-bottom: none;
 }
 
 .wind-container {
