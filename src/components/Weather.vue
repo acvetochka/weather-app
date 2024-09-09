@@ -8,7 +8,8 @@
         ]
     "
   >
-    <main :class="weather?.weather[0].main === 'Rain' ? 'rain' : ''">
+    <main :class="[weather?.weather[0].main === 'Rain' ? 'rain' : '',
+  weather?.weather[0].main === 'Snow' ? 'snow' : '']">
       <div class="search-box">
         <input
           type="text"
@@ -231,18 +232,39 @@ export default defineComponent({
 
 .weather .rain {
   background-image: url("../../assets/rain.png");
-  animation: rain 0.3s linear infinite;
+  animation: rain 3s linear infinite;
 }
 
 @keyframes rain {
-  0%{
+  /* 0%{
     background-position: 20% -10%;
   }
   100%{
     background-position: -10% 100%;
-  }
+  } */
+  0% {
+        background-position: 0px 0px;
+    }
+    100% {
+        background-position: -200px 1200px ;
+    }
   
 }
+
+.weather .snow {
+  background-image: url("../../assets/snow.png");
+  animation: snow 40s linear infinite;
+}
+
+@keyframes snow {
+  0% {
+        background-position: 0px 0px, 0px 0px, 0px 0px;
+    }
+    100% {
+        background-position: 1800px 2000px, 1600px 1600px, 1400px 1200px;
+    }
+}
+
 
 .search-box {
   width: 100%;
