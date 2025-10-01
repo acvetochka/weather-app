@@ -1,6 +1,6 @@
 # weather-app
 
-[Link](https://acvetochka.github.io/weather-app/)
+[Link to Project](https://acvetochka.github.io/weather-app/)
 
 ## Description
 
